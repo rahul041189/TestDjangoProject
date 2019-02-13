@@ -1,0 +1,26 @@
+<h1>{{app.title}}</h1>
+<h3>{{app.name}}</h3>
+
+{% if error_message %}
+    <p>{{ error_message }}</p>
+{% endif %}
+
+<form action="{% url 'TestApp:fav' app.id %}" method="post">
+    {% csrf_token %}
+    {% for screen in app.screen_set.all %}
+        <input type="radio" id="screen((forloop.counter}}" name="screen" value="{{screen.id}}">
+        <label for="screen((forloop.counter}}">
+            {{screen.title}}
+            {% if screen.is_fav %}
+                <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/16/star-icon.png"/>
+            {% endif %}
+        </label><br>
+    {% endfor%}
+<input type="submit" value="Fav">
+</form>
+<!--<ul>-->
+    <!--{% for screen in app.screen_set.all %}-->
+        <!--<li>{{screen.title}} - {{screen.type}}</li>-->
+    <!--{% endfor %}-->
+
+<!--</ul>-->

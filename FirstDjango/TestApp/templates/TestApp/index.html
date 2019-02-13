@@ -1,0 +1,6 @@
+<h1>All applications List</h1>
+<ul>
+    {% for app in all_apps %}
+    <li><a href="{% url 'TestApp:detail' app.id %}">{{app.title}}</a></li>
+    {% endfor %}
+</ul>
